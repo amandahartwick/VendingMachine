@@ -51,7 +51,13 @@ public class Slot {
     //Returns string representation of item
     @Override
     public String toString(){
-        //TODO add method
-        return name +" ProductName ProductPrice ifSoldOut";
+        String output = name+" ";
+        if(items.isEmpty()){
+            output += "SOLD OUT";
+        }
+        else{
+            output += items.get(0).getName()+" "+items.get(0).getPrice();
+        }
+        return output;
     }
 }
