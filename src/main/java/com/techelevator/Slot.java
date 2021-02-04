@@ -36,6 +36,7 @@ public class Slot {
        return null;
     }
 
+    //returns item for informational purposes
     public Item getItem(){
        if(!items.isEmpty()) {
            return items.get(0);

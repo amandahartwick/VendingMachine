@@ -11,20 +11,22 @@ public class Account {
     private final File file;
 
     //METHODS
+    //constructor
     public Account(){
         this.balance = 0.0;
         this.formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a");
         this.file = new File("Log.txt");
     }
 
-    //adds money to balance.
+    //adds money to balance, and calls helper method to print to log
     public void feedMoney(int money){
         double balanceBefore = balance;
         balance+=money;
         print("FEED MONEY",balanceBefore);
     }
 
-    //subtracts price of item from balance.
+    //subtracts price of item from balance, and calls helper method to print to log
+    //additionally, prints transaction to console
     public void purchaseItem(Item item, String slotName){
         double balanceBefore = balance;
         balance-=item.getPrice();
@@ -38,6 +40,7 @@ public class Account {
         return balance;
     }
 
+    //helper method to print transaction to the log
     public void print(String transaction, double balanceBefore){
         LocalDateTime ldt = LocalDateTime.now();
         String dateTime = ldt.format(formatter);
