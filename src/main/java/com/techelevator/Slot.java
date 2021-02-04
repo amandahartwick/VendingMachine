@@ -36,6 +36,13 @@ public class Slot {
        return null;
     }
 
+    public Item getItem(){
+       if(!items.isEmpty()) {
+           return items.get(0);
+       }
+       return null;
+    }
+
     //Returns the name of the slot.
     public String getName(){
         return name;
