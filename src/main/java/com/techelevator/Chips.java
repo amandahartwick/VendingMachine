@@ -1,4 +1,4 @@
 package com.techelevator;
 
-public class Chips implements buyable{
+public class Chips extends Item{
 }

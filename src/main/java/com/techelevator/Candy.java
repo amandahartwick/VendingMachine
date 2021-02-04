@@ -1,4 +1,4 @@
 package com.techelevator;
 
-public class Candy implements buyable{
+public class Candy extends Item{
 }

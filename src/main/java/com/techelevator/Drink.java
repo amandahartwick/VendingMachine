@@ -1,4 +1,4 @@
 package com.techelevator;
 
-public class Drink implements buyable{
+public class Drink extends Item{
 }

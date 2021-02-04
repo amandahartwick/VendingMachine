@@ -1,5 +1,5 @@
 package com.techelevator;
 
-public interface buyable {
+public class Item {
 
 }

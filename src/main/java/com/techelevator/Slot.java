@@ -6,11 +6,11 @@ public class Slot {
 
     //FIELDS
     private String name;
-    private ArrayList<buyable> items;
+    private ArrayList<Item> items;
 
     //METHODS
     //Constructor fills slot to capacity (5) when it is initially created.
-    public Slot(String name, buyable item) {
+    public Slot(String name, Item item) {
 
         this.name = name;
 
@@ -27,9 +27,9 @@ public class Slot {
 
     //Returns null if there are no more left (Sold out!).
     //Otherwise, it removes the item from the slot and returns it.
-    public buyable dispense(){
+    public Item dispense(){
        if(!items.isEmpty()) {
-           buyable output = items.get(0);
+           Item output = items.get(0);
            items.remove(0);
            return output;
        }

@@ -1,5 +1,5 @@
 package com.techelevator;
 
-public class Gum implements buyable{
+public class Gum extends Item{
 
 }

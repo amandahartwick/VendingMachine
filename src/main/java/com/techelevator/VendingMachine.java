@@ -22,7 +22,7 @@ public class VendingMachine {
     //Returns item from selected slot, it slot exists.
     //Otherwise, if item exists but is sold out, it prints that and returns null.
     //if item does not exist, it prints that and returns null.
-    public buyable buyItem(String slotName){
+    public Item buyItem(String slotName){
         for (Slot s: slots) {
             if(slotName.equals(s.getName())&&s.itemsSize()>0){
                 return s.dispense();
