@@ -30,6 +30,7 @@ public class Account {
         balance-=item.getPrice();
         String transaction = item.getName() + " " + slotName;
         print(transaction, balanceBefore);
+        System.out.println(item.getName()+" "+item.getPrice()+" "+balance+"\n"+item.getMessage());
     }
 
     //returns current balance.

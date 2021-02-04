@@ -8,6 +8,7 @@ public class Item {
 	public Item(String name, double price, String message) {
 		this.name = name;
 		this.price = price;
+		this.message = message;
 	}
 	
 	public String getName() {

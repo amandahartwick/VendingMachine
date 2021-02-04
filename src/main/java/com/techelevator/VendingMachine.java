@@ -10,6 +10,7 @@ public class VendingMachine {
     private ArrayList<Slot> slots;
 
     //METHODS
+    //constructs a vending machine from a file
     public VendingMachine(File file) {
        slots = new ArrayList<Slot>();
         try(Scanner fileScan = new Scanner(file)) {
@@ -22,6 +23,7 @@ public class VendingMachine {
         }
     }
 
+    //default constructor, for testing purposes.
     public VendingMachine(){
 
     }
@@ -36,7 +38,7 @@ public class VendingMachine {
     //Returns item from selected slot, it slot exists.
     //Otherwise, if item exists but is sold out, it prints that and returns null.
     //if item does not exist, it prints that and returns null.
-    public Boolean buyItem(String slotName, Account account){
+    public void buyItem(String slotName, Account account){
         for (Slot s: slots) {
 
            if(slotName.equals(s.getName())) {
@@ -44,20 +46,15 @@ public class VendingMachine {
                if (s.itemsSize() > 0 && s.getItem().getPrice() <= account.getBalance()) {
 
                    account.purchaseItem(s.dispense(),slotName);
-
-                   return true;
+                   return;
 
                } else if (s.getItem().getPrice() > account.getBalance()) {
 
                    System.out.println("You did not add enough money. Please add more, then try again.");
 
-                   return false;
-
                } else if (s.itemsSize() == 0) {
 
                    System.out.println("Item is sold out. Sorry.");
-
-                   return false;
 
                }
 
@@ -66,10 +63,9 @@ public class VendingMachine {
         }
 
         System.out.println("That item doesn't exist!");
-
-        return false;
     }
 
+    //turns strings into slots full of food
     public Slot parseSlot(String input){
 
         String[] arr = input.split("\\|");
@@ -79,20 +75,19 @@ public class VendingMachine {
         double price = Double.parseDouble(arr[2]);
         Item item = null;
 
-        switch (arr[3]){
-            case "Chip":{
+
+            if("Chip".equals(arr[3])){
                 item = new Chips(foodName,price);
             }
-            case "Drink":{
+            else if("Drink".equals(arr[3])){
                 item = new Drink(foodName,price);
             }
-            case "Gum":{
+            else if("Gum".equals(arr[3])){
                 item = new Gum(foodName,price);
             }
-            case "Candy":{
+            else if("Candy".equals(arr[3])){
                 item = new Candy(foodName,price);
             }
-        }
 
         return new Slot(slotName,item);
     }
