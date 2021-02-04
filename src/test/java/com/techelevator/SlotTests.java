@@ -36,6 +36,6 @@ public class SlotTests {
         buyable anotherItem = slot.dispense();
 
         Assert.assertEquals(0,slot.itemsSize());
-        Assert.assertEquals(null, anotherItem);
+        Assert.assertNull(anotherItem);
     }
 }
