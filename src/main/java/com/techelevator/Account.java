@@ -36,7 +36,7 @@ public class Account {
         System.out.println(item.getName()+" "+item.getPrice()+" "+balance+"\n"+item.getMessage());
     }
     
-    // Give Change ... does what it says
+    // Give Change
     public void giveChange(Item item) {
 
         int change = (int)(Math.ceil(balance * 100));
@@ -53,6 +53,8 @@ public class Account {
         System.out.println("Dimes: " + dimes);
         System.out.println("Nickels: " + nickels);
         System.out.println("Pennies: " + pennies);
+        
+        balance = 0.0;
     }
 
     //returns current balance.
