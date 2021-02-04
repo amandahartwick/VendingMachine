@@ -9,8 +9,7 @@ public class Account {
     private Double balance;
     private final DateTimeFormatter formatter;
     private final File file;
-
-    //METHODS
+    
     //constructor
     public Account(){
         this.balance = 0.0;
@@ -18,6 +17,8 @@ public class Account {
         this.file = new File("Log.txt");
     }
 
+    //METHODS
+     	
     //adds money to balance, and calls helper method to print to log
     public void feedMoney(int money){
         double balanceBefore = balance;
@@ -33,6 +34,25 @@ public class Account {
         String transaction = item.getName() + " " + slotName;
         print(transaction, balanceBefore);
         System.out.println(item.getName()+" "+item.getPrice()+" "+balance+"\n"+item.getMessage());
+    }
+    
+    // Give Change ... does what it says
+    public void giveChange(Item item) {
+
+        int change = (int)(Math.ceil(balance * 100));
+        
+        int quarters = Math.round((int)change / 25);
+        change = change % 25;
+        int dimes = Math.round((int)change / 10);
+        change = change % 10;
+        int nickels = Math.round((int)change / 5);
+        change = change % 5;
+        int pennies = Math.round((int)change / 1);
+
+        System.out.println("Quarters: " + quarters);
+        System.out.println("Dimes: " + dimes);
+        System.out.println("Nickels: " + nickels);
+        System.out.println("Pennies: " + pennies);
     }
 
     //returns current balance.
