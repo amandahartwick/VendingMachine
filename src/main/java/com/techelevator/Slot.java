@@ -40,4 +40,11 @@ public class Slot {
     public String getName(){
         return name;
     }
+
+    //Returns string representation of item
+    @Override
+    public String toString(){
+        //TODO add method
+        return name +" ProductName ProductPrice ifSoldOut";
+    }
 }
