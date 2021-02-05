@@ -25,7 +25,13 @@ public class VendingMachine {
 
     //default constructor, for testing purposes.
     public VendingMachine(){
+        slots = new ArrayList<Slot>();
+    }
 
+    //another tester constructor
+    public VendingMachine(Slot s){
+        slots = new ArrayList<Slot>();
+        slots.add(s);
     }
 
     //Prints Menu of all available items.
@@ -38,7 +44,7 @@ public class VendingMachine {
     //Returns item from selected slot, it slot exists.
     //Otherwise, if item exists but is sold out, it prints that and returns null.
     //if item does not exist, it prints that and returns null.
-    public void buyItem(String slotName, Account account){
+    public String buyItem(String slotName, Account account){
         for (Slot s: slots) {
 
            if(slotName.equals(s.getName())) {
@@ -46,25 +52,23 @@ public class VendingMachine {
                if (s.itemsSize() > 0 && s.getItem().getPrice() <= account.getBalance()) {
 
                    account.purchaseItem(s.dispense(),slotName);
-                   return;
+                   return "Purchase successful!";
+               } else if (s.itemsSize() == 0) {
+
+                   System.out.println("Item is sold out. Sorry.");
+                   return "Item is sold out. Sorry.";
 
                } else if (s.getItem().getPrice() > account.getBalance()) {
 
                    System.out.println("You did not add enough money. Please add more, then try again.");
-                   return;
-
-               } else if (s.itemsSize() == 0) {
-
-                   System.out.println("Item is sold out. Sorry.");
-                   return;
-
+                   return "You did not add enough money. Please add more, then try again.";
                }
-
            }
 
         }
 
         System.out.println("That item doesn't exist!");
+        return "That item doesn't exist!";
     }
 
     //turns strings into slots full of food
