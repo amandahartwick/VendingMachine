@@ -15,7 +15,10 @@ public class VendingMachine {
        slots = new ArrayList<Slot>();
         try(Scanner fileScan = new Scanner(file)) {
             while (fileScan.hasNextLine()) {
-                slots.add(parseSlot(fileScan.nextLine()));
+                Slot s = parseSlot(fileScan.nextLine());
+                if(s!=null) {
+                    slots.add(s);
+                }
             }
         }
         catch(FileNotFoundException e){
@@ -73,29 +76,30 @@ public class VendingMachine {
 
     //turns strings into slots full of food
     public Slot parseSlot(String input){
+        try {
+            String[] arr = input.split("\\|");
 
-        String[] arr = input.split("\\|");
-
-        String slotName = arr[0];
-        String foodName = arr[1];
-        double price = Double.parseDouble(arr[2]);
-        Item item = null;
+            String slotName = arr[0];
+            String foodName = arr[1];
+            double price = Double.parseDouble(arr[2]);
+            Item item = null;
 
 
-            if("Chip".equals(arr[3])){
-                item = new Chips(foodName,price);
-            }
-            else if("Drink".equals(arr[3])){
-                item = new Drink(foodName,price);
-            }
-            else if("Gum".equals(arr[3])){
-                item = new Gum(foodName,price);
-            }
-            else if("Candy".equals(arr[3])){
-                item = new Candy(foodName,price);
+            if ("Chip".equals(arr[3])) {
+                item = new Chips(foodName, price);
+            } else if ("Drink".equals(arr[3])) {
+                item = new Drink(foodName, price);
+            } else if ("Gum".equals(arr[3])) {
+                item = new Gum(foodName, price);
+            } else if ("Candy".equals(arr[3])) {
+                item = new Candy(foodName, price);
             }
 
-        return new Slot(slotName,item);
+            return new Slot(slotName, item);
+        }catch(Exception e){
+            System.out.println("There was a problem with your input file. Slot creation was not successful.");
+        }
+        return null;
     }
 
     public void purchaseMenu(Scanner scan){
