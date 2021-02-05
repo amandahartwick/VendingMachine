@@ -33,12 +33,13 @@ public class Account {
         balance-=item.getPrice();
         String transaction = item.getName() + " " + slotName;
         print(transaction, balanceBefore);
-        System.out.println(item.getName()+" "+item.getPrice()+" "+balance+"\n"+item.getMessage());
+        System.out.println("Item: "+item.getName()+"\nPrice: "+item.getPrice()+"\nChange: "+balance+"\n"+item.getMessage());
     }
     
     // Give Change
-    public void giveChange(Item item) {
+    public void giveChange() {
 
+        double balanceBefore = balance;
         int change = (int)(Math.ceil(balance * 100));
         
         int quarters = Math.round((int)change / 25);
@@ -55,6 +56,8 @@ public class Account {
         System.out.println("Pennies: " + pennies);
         
         balance = 0.0;
+
+        print("GIVE CHANGE", balanceBefore);
     }
 
     //returns current balance.

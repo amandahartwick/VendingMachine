@@ -51,10 +51,12 @@ public class VendingMachine {
                } else if (s.getItem().getPrice() > account.getBalance()) {
 
                    System.out.println("You did not add enough money. Please add more, then try again.");
+                   return;
 
                } else if (s.itemsSize() == 0) {
 
                    System.out.println("Item is sold out. Sorry.");
+                   return;
 
                }
 
@@ -90,6 +92,40 @@ public class VendingMachine {
             }
 
         return new Slot(slotName,item);
+    }
+
+    public void purchaseMenu(Scanner scan){
+        Account a = new Account();
+        while(true){
+            System.out.println("\n(1) Feed Money\n" +
+                    "(2) Select Product\n" +
+                    "(3) Finish Transaction\n" +
+                    "\n" +
+                    " Current Money Provided: \\"+a.getBalance());
+            String input = scan.nextLine();
+            if("1".equals(input)){
+                System.out.println("Please enter your money:");
+                input = scan.nextLine();
+                int money = 0;
+                try{
+                    money = Integer.parseInt(input);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("That was bad money. Zero dollars added.");
+                }
+                a.feedMoney(money);
+            }
+            else if("2".equals(input)){
+                System.out.println("Please enter the slot number for your item:\n");
+                printMenu();
+                input = scan.nextLine();
+                buyItem(input, a);
+            }
+            else if("3".equals(input)){
+                a.giveChange();
+                break;
+            }
+        }
     }
 
 
