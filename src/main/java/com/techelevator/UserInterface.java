@@ -3,7 +3,7 @@ package com.techelevator;
 import java.io.File;
 import java.util.Scanner;
 
-public class Main {
+public class UserInterface {
     public static void main(String[] args){
 
         File file = new File("vendingmachine.csv");
