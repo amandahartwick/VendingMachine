@@ -10,39 +10,9 @@ import java.util.Scanner;
 public class VendingMachine {
     //FIELDS
     private ArrayList<Slot> slots;
-    private double allTimeSales;
-    private Map <String, Integer> salesReport;
+    private SalesReport salesReport;
+
     //METHODS
-    
-    // Sales Report
-    public void parseSalesReport(String input) {
-    	String[] arr = input.split("\\|"); //  take string that was put into the method and split it at | into array
-    	String key = arr[0];
-    	String num = arr[1]; //declaring key and num
-    	
-    	int value = Integer.parseInt(num); // parsing it into an integer
-    	
-    	salesReport.put(key,value); // put integer into a map
-    }
-    //
-    public File getSalesReportName() {
-    	File salesReportName = new File("SalesReportName.txt");
-    	String fileName = "";
-    	try(Scanner fileScan = new Scanner(salesReportName)) {
-    		fileName = fileScan.nextLine();
-    	}
-    	catch(FileNotFoundException e) {
-    		System.out.println("File not found.");
-    	}
-    	return new File (fileName);
-    }
-
-    public void updateSalesReport(String itemName, double itemPrice){
-        allTimeSales+=itemPrice;
-
-    }
-    
-    
     //constructs a vending machine from a file
     public VendingMachine(File file) {
        slots = new ArrayList<Slot>();
@@ -57,29 +27,14 @@ public class VendingMachine {
         catch(FileNotFoundException e){
             System.out.println("File not found.");
         }
-        salesReport = new HashMap<>();
-        File salesReportFile = getSalesReportName();
+        salesReport = new SalesReport();
 
-        try(Scanner fileScan = new Scanner(salesReportFile)) {
-            while (fileScan.hasNextLine()) {
-                String line = fileScan.nextLine();
-            	if(line.equals("")){
-            	    String num = fileScan.nextLine();
-            	    allTimeSales = Double.parseDouble(num);
-                }
-            	else{
-            	    parseSalesReport(line);
-                }
-            }
-        }
-        catch(FileNotFoundException e){
-            System.out.println("File not found.");
-        }
     }
 
     //default constructor, for testing purposes.
     public VendingMachine(){
         slots = new ArrayList<Slot>();
+        salesReport = new SalesReport();
     }
 
     //another tester constructor
@@ -105,7 +60,7 @@ public class VendingMachine {
 
                if (s.itemsSize() > 0 && s.getItem().getPrice() <= account.getBalance()) {
 
-                   account.purchaseItem(s.dispense(),slotName);
+                   account.purchaseItem(s.dispense(),slotName, salesReport);
                    return "Purchase successful!";
                } else if (s.itemsSize() == 0) {
 
@@ -187,5 +142,7 @@ public class VendingMachine {
         }
     }
 
-
+    public SalesReport getSalesReport() {
+        return salesReport;
+    }
 }

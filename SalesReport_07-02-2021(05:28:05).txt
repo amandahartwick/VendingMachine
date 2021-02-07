@@ -10,11 +10,11 @@ Crunchie|3
 Moonpie|23
 Potato Crisps|10
 Triplemint|1
-Mountain Melter|12
+Mountain Melter|13
 U-Chews|4
 Skor|4
 Grain Waves|0
 Diet Cola|6
 Chiclets|0
 
-10.75
+12.25

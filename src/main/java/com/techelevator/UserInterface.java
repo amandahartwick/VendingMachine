@@ -1,6 +1,9 @@
 package com.techelevator;
 
 import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -24,7 +27,22 @@ public class UserInterface {
                 v.purchaseMenu(scan);
             }
             else if("3".equals(input)){
+                SalesReport s = v.getSalesReport();
+                s.print(s.getSalesReportName());
                 System.exit(0);
+            }
+            else if("4".equals(input)){
+                LocalDateTime ldt = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy(hh:mm:ss)");
+                String date = ldt.format(formatter);
+                String fileName = "SalesReport_"+date+".txt";
+                File sales = new File(fileName);
+                try {
+                    sales.createNewFile();
+                } catch (IOException e) {
+                    System.out.println("lol it still doesn't work");
+                }
+                v.getSalesReport().print(sales);
             }
         }
 

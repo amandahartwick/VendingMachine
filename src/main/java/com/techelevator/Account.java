@@ -28,12 +28,13 @@ public class Account {
 
     //subtracts price of item from balance, and calls helper method to print to log
     //additionally, prints transaction to console
-    public void purchaseItem(Item item, String slotName){
+    public void purchaseItem(Item item, String slotName, SalesReport s){
         double balanceBefore = balance;
         balance-=item.getPrice();
         String transaction = item.getName() + " " + slotName;
         print(transaction, balanceBefore);
         System.out.println("Item: "+item.getName()+"\nPrice: "+item.getPrice()+"\nChange: "+balance+"\n"+item.getMessage());
+        s.updateSalesReport(item.getName(), item.getPrice());
     }
     
     // Give Change

@@ -29,12 +29,13 @@ public class AccountTests {
 	
 	@Test
 	public void purchaseItem_updates_balance() {
+		VendingMachine v = new VendingMachine();
 		Account account = new Account();
 		
         Item item = new Candy("YumYum", 2.00);
         
 		account.feedMoney(5);
-		account.purchaseItem(item, "A1");
+		account.purchaseItem(item, "A1", v.getSalesReport());
 		
 		Double expected = 3.0;
 		Double actual = account.getBalance();
