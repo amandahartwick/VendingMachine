@@ -3,13 +3,41 @@ package com.techelevator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class VendingMachine {
     //FIELDS
     private ArrayList<Slot> slots;
-
+    private double allTimeSales;
+    private Map <String, Integer> salesReport;
     //METHODS
+    
+    // Sales Report
+    public void parseSalesReport(String input) {
+    	String[] arr = input.split("\\|"); //  take string that was put into the method and split it at | into array
+    	String key = arr[0];
+    	String num = arr[1]; //declaring key and num
+    	
+    	int value = Integer.parseInt(num); // parsing it into an integer
+    	
+    	salesReport.put(key,value); // put integer into a map
+    }
+    //
+    public File getSalesReportName() {
+    	File salesReportName = new File("SalesReportName.txt");
+    	String fileName = "";
+    	try(Scanner fileScan = new Scanner(salesReportName)) {
+    		fileName = fileScan.nextLine();
+    	}
+    	catch(FileNotFoundException e) {
+    		System.out.println("File not found.");
+    	}
+    	return new File (fileName);
+    }
+    
+    
     //constructs a vending machine from a file
     public VendingMachine(File file) {
        slots = new ArrayList<Slot>();
@@ -19,6 +47,16 @@ public class VendingMachine {
                 if(s!=null) {
                     slots.add(s);
                 }
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("File not found.");
+        }
+        salesReport = new HashMap<>();
+        File salesReportFile = getSalesReportName();
+        try(Scanner fileScan = new Scanner(salesReportFile)) {
+            while (fileScan.hasNextLine()) {
+            	parseSalesReport(fileScan.nextLine());
             }
         }
         catch(FileNotFoundException e){
