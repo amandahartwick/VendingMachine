@@ -52,12 +52,14 @@ public class Slot {
     //Returns string representation of item
     @Override
     public String toString(){
-        String output = name+" ";
+        String output = "\n"+name+" ";
         if(items.isEmpty()){
             output += "SOLD OUT";
         }
         else{
-            output += items.get(0).getName()+" "+items.get(0).getPrice();
+            output += items.get(0).getName()+" "+items.get(0).getPrice()+"\n* Quantity left: "+items.size();
+            //A1 YumYum 2.50
+            //Amount left: 5
         }
         return output;
     }
