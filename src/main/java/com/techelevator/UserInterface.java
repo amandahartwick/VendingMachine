@@ -44,6 +44,9 @@ public class UserInterface {
                 }
                 v.getSalesReport().print(sales);
             }
+            else if("Umbrella".equalsIgnoreCase(input)){
+                Art.print();
+            }
         }
 
     }
