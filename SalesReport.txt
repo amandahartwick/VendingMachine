@@ -16,3 +16,5 @@ U-Chews|4
 Little League Chew|2
 Chiclets|0
 Triplemint|0
+
+10.00

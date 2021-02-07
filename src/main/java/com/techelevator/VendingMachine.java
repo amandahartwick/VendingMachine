@@ -36,6 +36,11 @@ public class VendingMachine {
     	}
     	return new File (fileName);
     }
+
+    public void updateSalesReport(String itemName, double itemPrice){
+        allTimeSales+=itemPrice;
+
+    }
     
     
     //constructs a vending machine from a file
@@ -54,9 +59,17 @@ public class VendingMachine {
         }
         salesReport = new HashMap<>();
         File salesReportFile = getSalesReportName();
+
         try(Scanner fileScan = new Scanner(salesReportFile)) {
             while (fileScan.hasNextLine()) {
-            	parseSalesReport(fileScan.nextLine());
+                String line = fileScan.nextLine();
+            	if(line.equals("")){
+            	    String num = fileScan.nextLine();
+            	    allTimeSales = Double.parseDouble(num);
+                }
+            	else{
+            	    parseSalesReport(line);
+                }
             }
         }
         catch(FileNotFoundException e){
