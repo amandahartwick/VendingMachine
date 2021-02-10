@@ -1,7 +1,7 @@
 Stackers|3
 Cowtales|2
 Cola|8
-Heavy|11
+Heavy|12
 Cloud Popcorn|50
 Dr. Salt|9
 Little League Chew|2
@@ -17,4 +17,4 @@ Grain Waves|0
 Diet Cola|6
 Chiclets|0
 
-12.25
+13.75

@@ -41,6 +41,7 @@ public class VendingMachine {
     public VendingMachine(Slot s){
         slots = new ArrayList<Slot>();
         slots.add(s);
+        salesReport = new SalesReport();
     }
 
     //Prints Menu of all available items.
